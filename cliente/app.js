@@ -1,3 +1,4 @@
+'use strict'
 const webrtc2images = require('webrtc2images');
 const xhr = require('xhr');
 const controlRecord = document.querySelector('#btnRecord');
