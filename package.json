@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/Edd1721/ChatRealTime/issues"
   },
-  "homepage": "https://github.com/Edd1721/ChatRealTime#readme"
+  "homepage": "https://github.com/Edd1721/ChatRealTime#readme",
+  "dependencies": {
+    "st": "^1.0.0"
+  }
 }
