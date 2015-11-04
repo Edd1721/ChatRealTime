@@ -21,6 +21,10 @@
   },
   "homepage": "https://github.com/Edd1721/ChatRealTime#readme",
   "dependencies": {
-    "st": "^1.0.0"
+    "st": "^1.0.0",
+    "webrtc2images": "^1.4.4"
+  },
+  "devDependencies": {
+    "browserify": "^12.0.1"
   }
 }
