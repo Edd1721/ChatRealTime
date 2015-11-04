@@ -4,7 +4,9 @@
   "description": "Chat realtime con soporte de video y gifts animados con Node js",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "postinstall": "npm run build.js",
+    "build.js": "browserify cliente/app.js -o public/app.js",
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
@@ -21,8 +23,11 @@
   },
   "homepage": "https://github.com/Edd1721/ChatRealTime#readme",
   "dependencies": {
+    "body": "^5.1.0",
+    "course": "0.0.1",
     "st": "^1.0.0",
-    "webrtc2images": "^1.4.4"
+    "webrtc2images": "^1.4.4",
+    "xhr": "^2.1.0"
   },
   "devDependencies": {
     "browserify": "^12.0.1"

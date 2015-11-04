@@ -1,17 +1,44 @@
 const path = require('path');
 const  st = require('st');
+const jsonBody = require('body/json')
+const course = require('course');
+const router = course();
 const mount = st({
 	path: path.join(__dirname,'..','public'),
-	index: 'index.html'
+	index: 'index.html',	
+	passthrough: true
 });
+
+router.post('/process',function(req,res){
+	jsonBody(req,res,{limit: 3 * 1024 * 1024},function(err,body){
+		if(err) return faile(err,res);
+		
+		console.log(body);
+		res.setHeader('Content-Type','application/json')
+		res.end(JSON.stringify({ok: true}))
+	});
+});
+
 
 function onRequest(req,res)
 {
 	mount(req,res,function(err){
-		if(err){ return res.end(err.message);}		
-		res.statusCode = 404;
-		res.end(`Page not found ${req.url}`);		
+		if(err){ return faile(err, res);}	
+		
+		router(req,res,function(err){
+			if(err) faile(err,res);
+			res.statusCode = 404;
+		res.end(`Page not found ${req.url}`);
+		});	
+				
 	});
+}
+
+function faile(err,res)
+{
+	res.statusCode = 500;
+	res.setHeader('Content-Type','text/plain');
+	res.end(err.message);
 }
 
 module.exports = onRequest
