@@ -1,0 +1,23 @@
+{
+  "name": "chatrealtime",
+  "version": "1.0.0",
+  "description": "Chat realtime con soporte de video y gifts animados con Node js",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Edd1721/ChatRealTime.git"
+  },
+  "keywords": [
+    "chat",
+    "node"
+  ],
+  "author": "Edward S. Ramos",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Edd1721/ChatRealTime/issues"
+  },
+  "homepage": "https://github.com/Edd1721/ChatRealTime#readme"
+}
