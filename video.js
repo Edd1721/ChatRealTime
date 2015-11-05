@@ -6,6 +6,7 @@ const async = require('async');
 const uuid = require('uuid');
 const dataUriBuffer = require('data-uri-to-buffer');
 const eventEmitter = require('events').EventEmitter;
+const listFiles = require('./helper/list')
 
 module.exports = function(images)
 {
@@ -32,7 +33,7 @@ module.exports = function(images)
 		
 		wrStr.on('error',done)
 			 .end(buffer,done)
-		event.emit('log',`${filename}`)
+		event.emit('log',`Converting ${filename}`)
 	}
 	
 	
@@ -45,7 +46,22 @@ module.exports = function(images)
 	}
 	
 	function cleanUp(done){
-		done();
+		event.emit('log','Cleaning up');
+		listFiles(tmpDir,basename,function(err,files){
+			if(err) return done(err)
+			DeleteFiles(files,done);
+		})
+	}
+	
+	function DeleteFiles(files,done){
+		async.each(files,deleteFile,done);
+	}
+	
+	function deleteFile(file,done){
+		fs.unlink(path.join(tmpDir,file,function(err){
+			//Ignoro el error porque no es el foco de la aplicacion borrar temporales.
+			done();
+		}))
 	}
 	
 	function convertFinished(err){
