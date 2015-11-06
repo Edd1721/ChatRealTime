@@ -7,6 +7,7 @@ const uuid = require('uuid');
 const dataUriBuffer = require('data-uri-to-buffer');
 const eventEmitter = require('events').EventEmitter;
 const listFiles = require('./helper/list')
+const ffmpeg = require('./helper/list');
 
 module.exports = function(images)
 {
@@ -38,7 +39,10 @@ module.exports = function(images)
 	
 	
 	function createVideo(done){
-		done();
+		ffmpeg({
+			baseName: basename,
+			folder: tmpDir
+		},done)
 	}
 	
 	function codeVideo(done){
